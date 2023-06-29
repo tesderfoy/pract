@@ -44,6 +44,10 @@ public class User implements UserDetails {
     private List<Mark> marks = new ArrayList<>();
 
 
+
+    public boolean isAdmin(){return roles.contains(Role.ROLE_ADMIN);}
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
@@ -53,6 +57,7 @@ public class User implements UserDetails {
     public String getUsername() {
         return email;
     }
+
 
     @Override
     public boolean isAccountNonExpired() {

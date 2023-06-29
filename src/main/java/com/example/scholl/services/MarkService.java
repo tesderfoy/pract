@@ -22,11 +22,12 @@ public class MarkService {
     @Autowired
     private final UserRepository userRepository;
 
-public  List<Mark> listMarks(String teacher){
+public  List<Mark> listMarks(String student){
     List<Mark> marks = markRepository.findAll();
-    if (teacher != null) return markRepository.findByUser(teacher);
-    return marks;
-
+    if (student != null) return markRepository.findByStudent(student);
+    else {
+        return marks;
+    }
 }
 
     public  void saveMarks(Principal principal, Mark mark){

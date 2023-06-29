@@ -1,47 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Журнал</title>
+    <title>Электронный журнал</title>
 </head>
 <body>
-<h1>Электронный журнал</h1><hr>
+<h1>Электронный журнал</h1>
+<hr>
 <#if user.email??>
-<h3>Имя пользователя: ${user.email} </h3>
-<form action="/logout" method="post">
-    <input type="hidden" name="_csrf" value="${_csrf.token}">
-    <input type="submit" value="Выйти"/>
-
-<#else>
-    <a href="/login">Войти</a></h1><hr>
+<h3>Имя пользователя: ${user.surname} ${user.name}
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <input type="submit" value="Выйти"/>
+    </form>
+</h3>
+    <#if user.isAdmin()>
+        <a href="/admin">Панель администратора</a>
+    </#if>
+    <#else>
+    <a href="/login">Войти</a></h1>
 </#if>
-
-
-</form>
-<h1>Оценки</h1>
+<hr>
+<#if user.email??>
+    <h3> Добавить оценку</h3>
+    <form action="/mark/create" method="post">
+        Ученик: <input type="text" name="student"/><br><br>
+        Оценка: <input type="text" name="value"/><br><br>
+        Оценка: <input type="text" name="data"/><br><br>
+        <input type="hidden" name="_csrf" value=${_csrf.token}>
+        <input type="submit" value="Добавить"/>
+    </form>
+    <hr>
+<h3>Оценки</h3>
 <form action="/" method="get">
-    Поиск по имени учителя: <input type="text" name="title"><br>
+    Поиск по имени ученика: <input type="text" name="student"><br>
     <input type="submit" value="Поиск">
 </form>
-
-<#list marks as mark>
-
-<div>
-    <p> Предмет ${mark.subject}
-        Ученик: ${mark.student}
-        Учитель: ${mark.teacher}
-        Оценка: ${mark.value} | <a href="/mark/${mark.id}">Подробне...</a> </p>
-</div>
-</#list>
-<#if user.email??>
-<h3> Добавить оценку</h3>
-<form action="/mark/create" method="post">
-    Предмет: <input type="text" name="subject"/><br><br>
-    Ученик: <input type="text" name="student"/><br><br>
-    Учитель: <input type="text" name="teacher"/><br><br>
-    Оценка: <input type="text" name="value"/><br><br>
-    <input type="hidden" name="_csrf" value=${_csrf.token}>
-<input type="submit" value="Добавить"/>
-</form>
+<table border="1">
+        <tr>
+            <th>Ученик</th>
+            <th>Предмет</th>
+            <th>Оценка</th>
+            <th>Дата</th>
+            <th>Учитель</th>
+            <th>Удалить</th>
+        </tr>
+        <#list marks as mark>
+            <tr>
+                <th>${mark.student}</th>
+                <th>${mark.user.subject}</th>
+                <th>${mark.value}</th>
+                <th>${mark.data}</th>
+                <th>${mark.user.surname} ${mark.user.name}</th>
+                <th><form action="/mark/delete/${mark.id}" method="post">
+                        <input type="submit" value="Удалить"/>
+                        <input type="hidden" name="_csrf" value="${_csrf.token}">
+                    </form>
+                </th>
+            </tr>
+        </#list>
+    </table>
 </#if>
 </body>
 </html>

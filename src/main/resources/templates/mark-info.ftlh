@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Журнал</title>
+    <title>Электронный журнал</title>
 </head>
 <body>
 <h4>Подробнее Оценки</h4>
@@ -15,7 +15,5 @@
 <form action="/mark/delete/${mark.id}" method="post">
     <input type="submit" value="Удалить"/>
 </form>
-
-
 </body>
 </html>

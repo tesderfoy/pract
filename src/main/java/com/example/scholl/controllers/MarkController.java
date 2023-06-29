@@ -20,8 +20,8 @@ public class MarkController {
     private final MarkService markService;
 
     @GetMapping("/")
-    public String marks(@RequestParam(name = "teacher", required = false) String teacher,Principal principal,Model model){
-        model.addAttribute("marks", markService.listMarks(teacher));
+    public String marks(@RequestParam(name = "student", required = false) String student,Principal principal,Model model){
+        model.addAttribute("marks", markService.listMarks(student));
         model.addAttribute("user",markService.getUserByPrincipal(principal));
         return "mark";
     }
@@ -42,7 +42,7 @@ public class MarkController {
     }
 
     @PostMapping("mark/delete/{id}")
-    public String deleteMark(@PathVariable Long id){
+    public String deleteMark(@PathVariable Long id ){
         markService.deleteMark(id);
         return "redirect:/";
     }

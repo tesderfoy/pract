@@ -19,6 +19,8 @@ public class Mark {
     private Long id;
     @Column(name = "subject")
     private String subject;
+    @Column(name = "data")
+    private String data;
     @Column(name = "student")
     private String student;
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
@@ -26,6 +28,9 @@ public class Mark {
     private User user;
     @Column(name = "value")
     private String value;
+
+
+
 
 
     }

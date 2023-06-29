@@ -34,11 +34,4 @@ public class UserController {
         }
         return "redirect:/login";
     }
-
-    @GetMapping("/hello")
-    public String securityUrl(){
-        return "hello";
-    }
-
-
 }
