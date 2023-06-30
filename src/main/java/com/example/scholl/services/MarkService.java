@@ -25,9 +25,7 @@ public class MarkService {
 public  List<Mark> listMarks(String student){
     List<Mark> marks = markRepository.findAll();
     if (student != null) return markRepository.findByStudent(student);
-    else {
-        return marks;
-    }
+    return marks;
 }
 
     public  void saveMarks(Principal principal, Mark mark){

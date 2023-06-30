@@ -16,5 +16,10 @@
     <input type="hidden" name="_csrf" value="${_csrf.token}">
     <button type="submit">Сохранить</button>
 </form>
+<br>
+<form action="/admin/user/delete/${user.id}" method="post">
+    <input type="submit" value="Удалить"/>
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
+</form>
 </body>
 </html>

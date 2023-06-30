@@ -11,4 +11,6 @@ public interface MarkRepository extends JpaRepository<Mark,Long> {
 
 
     List<Mark> findByStudent(String student);
+
+    List<Mark> findByUser(Long id);
 }

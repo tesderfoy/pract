@@ -17,7 +17,6 @@
         <a href="/admin">Панель администратора</a>
     </#if>
     <#else>
-    <a href="/login">Войти</a></h1>
 </#if>
 <hr>
 <#if user.email??>
@@ -25,7 +24,7 @@
     <form action="/mark/create" method="post">
         Ученик: <input type="text" name="student"/><br><br>
         Оценка: <input type="text" name="value"/><br><br>
-        Оценка: <input type="text" name="data"/><br><br>
+        Дата: <input type="text" name="data"/><br><br>
         <input type="hidden" name="_csrf" value=${_csrf.token}>
         <input type="submit" value="Добавить"/>
     </form>
@@ -35,6 +34,7 @@
     Поиск по имени ученика: <input type="text" name="student"><br>
     <input type="submit" value="Поиск">
 </form>
+    <br>
 <table border="1">
         <tr>
             <th>Ученик</th>
